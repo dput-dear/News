@@ -1,0 +1,36 @@
+module.exports = {
+    // flag用于标识是否是多表查询
+    select: function (query, t_name,flag) {
+        let sql = `select * from ${t_name}`;
+        if (query) {
+            sql += ` where 1=1`;
+            for (var i in query) {
+                if(flag){
+                    sql += `${query[i] ? " and " +t_name+"."+ i + "='" + query[i] + "'" : ''}`;
+                }else{
+                    sql += `${query[i] ? " and " + i + "='" + query[i] + "'" : ''}`;
+                }
+            }
+        }
+        return sql;
+    },
+    insert:function(query,t_name){
+        let sql = `INSERT INTO ${t_name} `;
+        if(query){
+            sql+="(";
+            for(var i in query){
+                sql+=i+','
+            }
+            sql=`${sql.substring(0,sql.length-1)}) VALUES(`;
+            for (var i in query) {
+                if (typeof (query[i]) == 'number'){
+                    sql += query[i] + ','
+                }else{
+                    sql += `'${query[i]}',`;
+                }
+            }
+            sql = `${sql.substring(0, sql.length - 1)})`;
+        }
+        return sql;
+    }
+};

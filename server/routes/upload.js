@@ -35,7 +35,7 @@ router.post('/',function(req,res){    /* 生成multiparty对象，并配置上�
             Message:"Success",
             files:[{
                 name: file.originalFilename,
-                url: dstPath.substring(1)
+                url: `/files/${file.originalFilename}`
             }]
         });
     });

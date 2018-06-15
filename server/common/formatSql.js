@@ -3,13 +3,24 @@ module.exports = {
     select: function (query, t_name,flag) {
         let sql = `select * from ${t_name}`;
         if (query) {
-            sql += ` where 1=1`;
+            if(!flag){
+                sql += ` where 1=1`;
+            }
             for (var i in query) {
                 if(flag){
                     sql += `${query[i] ? " and " +t_name+"."+ i + "='" + query[i] + "'" : ''}`;
                 }else{
                     sql += `${query[i] ? " and " + i + "='" + query[i] + "'" : ''}`;
                 }
+            }
+        }
+        return sql;
+    },
+    where:function(query){
+        let sql='where 1=1';
+        if(query){
+            for(var i in query){
+                sql += `${query[i] ? " and " + i + "='" + query[i] + "'" : ''}`
             }
         }
         return sql;

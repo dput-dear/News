@@ -1,5 +1,5 @@
 <template>
-<div class="index">
+<div class="index" :style="{height:winHeight+'px'}">
   <div class="indexCon">
     <el-row :gutter="20">
         <el-col :span="6">
@@ -30,6 +30,7 @@ export default {
             }
         }
     },
+    props:["winHeight"],
     mounted:function(){
         this.$global.getCookie(this);
         this.$emit('changeNav','index');

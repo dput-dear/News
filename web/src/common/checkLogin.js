@@ -13,7 +13,7 @@ export default {
                         if ( data.length ) {
                             if ( data[ 0 ].loginCode == loginCode ) {
                                 if(_this.$route.path != `/login`){
-                                    _this.$router.push(_this.$route.path);
+                                    _this.$router.push(_this.$route.fullPath);
                                 }else{
                                    _this.$router.push('/'); 
                                }
@@ -21,7 +21,7 @@ export default {
                                 _this.$listeners.changeLogStatus(true);
                             } else {
                                 if(_this.$route.path != `/login`){
-                                    _this.$router.push(`/login?router=${_this.$route.path.split('')[1]}`);
+                                    _this.$router.push(`/login?router=${_this.$route.path.split('/')[1]}`);
                                 }
                                 _this.$listeners.setUser();
                                 _this.$listeners.changeLogStatus(false);

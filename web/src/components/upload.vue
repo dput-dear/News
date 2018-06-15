@@ -25,7 +25,7 @@ export default {
         autoUpload:Boolean,
         accept:{
             type:String,
-            default:'.jpg,.png'
+            default:'image/jpg,image/png'
         }
     },
     methods:{

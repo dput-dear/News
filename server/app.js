@@ -23,8 +23,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'dist')));
 app.use(cors());
 
+// api接口
 app.use('/api/user', user);
 app.use('/api/enmu', enmu);
 app.use('/api/upload', upload);

@@ -4,6 +4,7 @@ import Login from '@/components/Login'
 import Index from '@/components/index'
 import News from '@/components/news'
 import AddNews from '@/components/addNews'
+import NewsDetail from '@/components/newsDetail'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
         path: '/addNews',
         name: 'addNews',
         component: AddNews
+    },
+    {
+        path: '/newsDetail',
+        name: 'newsDetail',
+        component: NewsDetail
     }
   ]
 })

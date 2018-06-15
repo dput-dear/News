@@ -5,7 +5,7 @@ import Axios from 'axios'
 import '../theme/index.css'
 import App from './App'
 import router from './router/router.js'
-import $global from './common/function.js'
+import $global from './common/global.js'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);

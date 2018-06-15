@@ -80,7 +80,7 @@
 import upload from './upload.vue'
 export default {
     name: 'AddNews',
-    props:["winHeight"],
+    props:[],
     data:function(){
         return {
             isLoad:false,
@@ -122,6 +122,20 @@ export default {
             }).catch(err=>{
                 console.log(err);
             });
+        // 获取详情
+        let newID = this.$route.query.newID;
+        if(newID){
+            this.$axios.get('/api/news/detail',{params:{newID:newID}})
+            .then(result=>{
+                let data = result.data.data
+                let content = JSON.parse(JSON.parse(data.content));
+                data.content = content;
+                _this.form = data;
+            })
+            .catch(err=>{
+                console.log(err);
+            })   
+        }
     },
     methods:{
         addParagraph:function(){
@@ -147,7 +161,14 @@ export default {
             let _this = this;
             this.$refs[formName].validate((valid)=>{
                 if(valid){
-                    _this.$axios.post('/api/news/create',this.form)
+                    let query = {
+                        newID:this.form.newID,
+                        title:this.form.title,
+                        tagID:this.form.tagID,
+                        summary:this.form.summary,
+                        content:JSON.stringify(this.form.content)
+                    }
+                    _this.$axios.post('/api/news/create',query)
                         .then(result=>{
                             _this.isLoad = false;
                             if(result.data.Status == 0){

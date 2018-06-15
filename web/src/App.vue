@@ -11,8 +11,7 @@
                 v-on:setUser="setUser"
                 v-on:changeNav="changeNav"
                 v-on:changeLogStatus="changeLogStatus"
-                v-bind:winHeight="winHeight"
-                v-bind:domian="domian">
+                v-bind:winHeight="winHeight">
             </router-view>
         </div>
     </div>
@@ -24,11 +23,13 @@ export default {
     name: 'App',
     data:function(){
         return {
-            domian:'http://127.0.0.1:3000',
             userName:'',
             current:"",
             isLogin:false,
-            winHeight:$(window).outerHeight(true)
+            winHeight:$(window).outerHeight(true),
+            data:{
+                news:{}
+            }
         }
     },
     components:{
@@ -53,17 +54,20 @@ export default {
         },
         changeLogStatus:function(status){
             this.isLogin = status;
+        },
+        changeData:function(data,type){
+            this.data[type] = data;
         }
     }
 }
 </script>
 <style lang='less'>
     #app{
-        height:100%;
+        min-height:100%;
         position: relative;
         background-color: #f6f7fc;
         .con{
-            height:100%;
+            min-height:100%;
         }
     }
 </style>

@@ -75,6 +75,8 @@ router.get('/getList',function(req,res){
 		end = parseInt(start) + parseInt(pageSize);
 	}
 	req.query.status = 0;
+	console.log(formatSql.select1(req.query, ["newID", "title", "summary"], "T_News"));
+	
 	let sql = formatSql.select(req.query, 'T_News',true);
 	sql +=` left join T_Enum on T_News.tagID = T_Enum.enumCode where T_News.status=0 order by T_News.createTime desc`;
 	db.selectSql(sql).then(data=>{

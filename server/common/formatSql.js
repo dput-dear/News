@@ -16,6 +16,17 @@ module.exports = {
         }
         return sql;
     },
+    select1: function (query,selectData,t_name) {
+        let selectStr = '';
+        for(var i in selectData){
+            selectStr+=`${selectData[i]},`
+        }
+        let sql = `select ${selectStr.substring(0, selectStr.length-1)} from ${t_name} where 1=1`;
+        for (var i in query) {
+            sql += `${query[i] !=null ? " and " + i + "='" + query[i] + "'" : ''}`;
+        }
+        return sql;
+    },
     where:function(query){
         let sql='where 1=1';
         if(query){
